@@ -1,0 +1,57 @@
+<!doctype html>
+<html ng-app>
+  <head>
+    <title>Mahjong Scoreboard</title>
+    <script src="angular.min.js"></script>
+    <script src="player.js"></script>
+  </head>
+  <body>
+    <div ng-controller="PlayerCtrl">
+      <table>
+        <thead>
+          <tr>
+            <th>Spelare</th>
+            <th>Bord</th>
+            <th>Bordspoäng</th>
+            <th>Poäng</th>
+          </tr>
+        </thead>
+
+        <tbody>
+        <tr class="player" ng-repeat="player in players">
+          <td class="name">{{player.name}}</td>
+          <td class="table-number">{{player.table}}</td>
+          <td class="table-points"></td>
+          <td class="points"></td>
+        </tr>
+        </tbody>
+
+        <tfoot>
+          <tr>
+            <th>Antal: {{numberOfPlayers}}</th>
+            <th>Summa:</th>
+            <td id="table_points_total">{{tablePointsTotal}}</td>
+            <td id="points_total">{{pointsTotal}}</td>
+          </tr>
+        </tfoot>
+      </table>
+
+      <span>{{tables}}</span>
+
+      <div class="player-form">
+        <form ng-submit="addPlayer()">
+          <label for="player-name">Namn
+            <input type="text" ng-model="playerName" name="player-name">
+          </label>
+          <input type="submit" value="Lägg till">
+        </form>
+      </div>
+
+      <div id="score-input">
+        <form ng-submit="addScore()">
+
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
