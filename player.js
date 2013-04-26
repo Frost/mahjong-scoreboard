@@ -1,9 +1,27 @@
-function PlayerCtrl($scope) {
+ngGridLayoutPlugin = {
+  self: this,
+  grid: null,
+  scope: null,
+  init: function(scope, grid, services) {
+        this.domUtilityService = services.DomUtilityService;
+        this.grid = grid;
+        this.scope = scope;
+    },
+  updateGridLayout: function () {
+        this.scope.$apply(function(){
+            this.domUtilityService.RebuildGrid(this.scope, this.grid);
+        });
+    }
+}
+var app = angular.module('mahjong', ['ngGrid']);
+app.controller('PlayerCtrl', function($scope) {
   $scope.players = [];
   $scope.numberOfPlayers = $scope.players.length;
   $scope.tablePointsTotal = 0;
   $scope.pointsTotal = 0;
   $scope.tables = 1;
+  var gridLayout = ngGridLayoutPlugin;
+  $scope.gridOptions = {data: 'players', plugins: [gridLayout]};
 
   $scope.addPlayer = function() {
     $scope.players.push({name: $scope.playerName, table: '?'});
@@ -83,4 +101,4 @@ function PlayerCtrl($scope) {
 
     return state;
   }
-}
+});

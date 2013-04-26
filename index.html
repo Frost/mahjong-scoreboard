@@ -1,8 +1,11 @@
 <!doctype html>
-<html ng-app>
+<html ng-app="mahjong">
   <head>
     <title>Mahjong Scoreboard</title>
+    <link rel="stylesheet" type="text/css" href="ng-grid.css" />
+    <script type="text/javascript" src="jquery-1.9.1.min.js"></script>
     <script src="angular.min.js"></script>
+    <script type="text/javascript" src="ng-grid-2.0.3.min.js"></script>
     <script src="player.js"></script>
   </head>
   <body>
@@ -52,6 +55,9 @@
 
         </form>
       </div>
+      <div ng-grid="gridOptions">
+      </div>
+
     </div>
   </body>
 </html>
